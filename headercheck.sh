@@ -14,23 +14,69 @@ GREEN=$ESC"32m"
 BGRED=$ESC"101m"$ESC"30m"
 BGRESET=$ESC"49m"$ESC"39m"
 
-echo 
+# Other Variables
+TARGET=""
+
+function fancyintro {
+
+echo
 echo " _ _  ___  ___  ___   _ _              _             ___           _ "
 echo "| | ||_ _||_ _|| . \ | | | ___  ___  _| | ___  _ _  |_ _|___  ___ | |"
 echo "|   | | |  | | |  _/ |   |/ ._><_> |/ . |/ ._>| '_>  | |/ . \/ . \| |"
 echo "|_|_| |_|  |_| |_|   |_|_|\___.<___|\___|\___.|_|    |_|\___/\___/|_|"
 echo "                                                                     "
-echo "HTTP Header Scanning Tool - 4chtung"
-echo
-echo -e "${BGRED}[+] Scanning ${BGRESET} $1 ${RESET}"
-
-HEADER=$(curl -sS --head $1)
-
-echo
+echo "HTTP Header Scanning Tool --- 4chtung - (FriedSec)"
+echo "V1.1 - Added Support For Text File Analysis"
 echo
 
-#echo HEADER TEST
-#echo "${HEADER}"
+}
+
+function usage {
+echo
+echo "A fairly quick a dirty shell script to see which recommended HTTP Headers are missing."
+echo
+echo "Usage: "
+echo
+echo "-u <URL>  : Connect to a URL and check the HTTP Headers."
+echo "-f <FILE> : Look at a file for HTTP Headers."
+echo
+echo
+
+}
+
+function urlscan {
+	echo -e "${BGRED}[+] Scanning ${BGRESET} $URLTARGET ${RESET}"
+	HEADER=$(curl -sS --head $URLTARGET)
+	echo
+	echo
+}
+
+function filescan {
+	echo -e "${BGRED}[+] Reading ${BGRESET} $FILETARGET ${RESET}"
+	HEADER=$(cat $FILETARGET)
+	echo
+	echo
+}
+
+###############################################################################
+
+fancyintro
+
+while getopts ":u:f:" opt;
+do
+	case $opt in
+
+	u) URLTARGET="${OPTARG}"
+	urlscan
+	;;
+	f) FILETARGET="${OPTARG}"
+	filescan
+	;;
+	*) usage 
+	exit 1
+	;;
+	esac
+done
 
 ################
 #HEADER TESTING#
@@ -82,18 +128,5 @@ echo
 echo
 
 echo "${HEADER}"
-
-########################################################################
-# This would be the best way to do it. But its not case insensitive :( #
-########################################################################
-#
-#shopt -s nocasematch
-#
-#case "$HEADER" in
-#	*[["Strict-Transport-Security"]]* ) echo "Found!"
-#	;;
-#	* ) echo "Not Found!"
-#	;;
-#esac
-#
-#shopt -u nocasematch
+echo
+echo
