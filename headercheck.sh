@@ -97,28 +97,28 @@ else
 fi
 
 #X-Frame-Options
-if echo "$HEADER" | grep -qiF --regexp=Strict-Transport-Security; then
+if echo "$HEADER" | grep -qiF --regexp=X-Frame-Options; then
         echo -e "[+] X-Frame-Options:           ${GREEN}Header Present${RESET}"
 else
         echo -e "[+] X-Frame-Options:           ${RED}Header Not Present${RESET}"
 fi
 
 #X-XSS-Protection
-if echo "$HEADER" | grep -qiF --regexp=Strict-Transport-Security; then
+if echo "$HEADER" | grep -qiF --regexp=X-XSS-Protection; then
         echo -e "[+] X-XSS-Protection:          ${GREEN}Header Present${RESET}"
 else
         echo -e "[+] X-XSS-Protection:          ${RED}Header Not Present${RESET}"
 fi
 
 #Content-Security-Policy
-if echo "$HEADER" | grep -qiF --regexp=Strict-Transport-Security; then
+if echo "$HEADER" | grep -qiF --regexp=Content-Security-Policy; then
         echo -e "[+] Content-Security-Policy:   ${GREEN}Header Present${RESET}"
 else
         echo -e "[+] Content-Security-Policy:   ${RED}Header Not Present${RESET}"
 fi
 
 #Referrer Policy
-if echo "$HEADER" | grep -qiF --regexp=Strict-Transport-Security; then
+if echo "$HEADER" | grep -qiF --regexp=Referrer-Policy; then
         echo -e "[+] Referrer-Policy:           ${GREEN}Header Present${RESET}"
 else
         echo -e "[+] Referrer-Policy:           ${RED}Header Not Present${RESET}"
