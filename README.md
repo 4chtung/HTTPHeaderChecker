@@ -1,11 +1,10 @@
 # HTTP Header Scanner V1.1
-### V1.1 - Added Support For Text File Analysis
-
+### 4chtung - (FriedSec)
 -----------
+#### V1.2 - Added Redirect Page Support 
+#### V1.1 - Added Support For Text File Analysis
 
-###By 4chtung - (FriedSec)
-
------------
+![HeaderCheck](/HeaderCheck.PNG)
 
 A fairly quick a dirty shell script to see which recommended HTTP Headers are missing.
 
