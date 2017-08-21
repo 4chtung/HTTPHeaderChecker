@@ -46,7 +46,7 @@ echo
 
 function urlscan {
 	echo -e "${BGRED}[+] Scanning ${BGRESET} $URLTARGET ${RESET}"
-	HEADER=$(curl -k -sS --head $URLTARGET)
+	HEADER=$(curl -L -k -sS --head $URLTARGET)
 	echo
 	echo
 }
