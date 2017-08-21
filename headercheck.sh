@@ -26,6 +26,7 @@ echo "|   | | |  | | |  _/ |   |/ ._><_> |/ . |/ ._>| '_>  | |/ . \/ . \| |"
 echo "|_|_| |_|  |_| |_|   |_|_|\___.<___|\___|\___.|_|    |_|\___/\___/|_|"
 echo "                                                                     "
 echo "HTTP Header Scanning Tool --- 4chtung - (FriedSec)"
+echo "V1.2 - Added Redirect Support"
 echo "V1.1 - Added Support For Text File Analysis"
 echo
 
