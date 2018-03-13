@@ -1,5 +1,5 @@
 # HTTP Header Scanner V1.2
-### 4chtung - (FriedSec)
+### 4chtung - (@FriedSec)
 -----------
 #### V1.2 - Added Redirect Page Support 
 #### V1.1 - Added Support For Text File Analysis
