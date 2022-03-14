@@ -46,17 +46,17 @@ echo
 }
 
 function urlscan {
-	echo -e "${BGRED}[+] Scanning ${BGRESET} $URLTARGET ${RESET}"
-	HEADER=$(curl -L -k -sS --head $URLTARGET)
-	echo
-	echo
+        echo -e "${BGRED}[+] Scanning ${BGRESET} $URLTARGET ${RESET}"
+        HEADER=$(curl -L -k -sS --head $URLTARGET)
+        echo
+        echo
 }
 
 function filescan {
-	echo -e "${BGRED}[+] Reading ${BGRESET} $FILETARGET ${RESET}"
-	HEADER=$(cat $FILETARGET)
-	echo
-	echo
+        echo -e "${BGRED}[+] Reading ${BGRESET} $FILETARGET ${RESET}"
+        HEADER=$(cat $FILETARGET)
+        echo
+        echo
 }
 
 ###############################################################################
@@ -65,18 +65,18 @@ fancyintro
 
 while getopts ":u:f:" opt;
 do
-	case $opt in
+        case $opt in
 
-	u) URLTARGET="${OPTARG}"
-	urlscan
-	;;
-	f) FILETARGET="${OPTARG}"
-	filescan
-	;;
-	*) usage 
-	exit 1
-	;;
-	esac
+        u) URLTARGET="${OPTARG}"
+        urlscan
+        ;;
+        f) FILETARGET="${OPTARG}"
+        filescan
+        ;;
+        *) usage
+        exit 1
+        ;;
+        esac
 done
 
 ################
@@ -85,44 +85,58 @@ done
 
 #Strict-Transport-Security
 if echo "$HEADER" | grep -qiF --regexp=Strict-Transport-Security; then
-	echo -e "[+] Strict Transport Security: ${GREEN}Header Present${RESET}"
+        echo -e "[+] Strict Transport Security:                   ${GREEN}Header Present${RESET}"
 else
-	echo -e "[+] Strict Transport Security: ${RED}Header Not Present${RESET}"
+        echo -e "[+] Strict Transport Security:                   ${RED}Header Not Present${RESET}"
 fi
 
 #X-Content-Type-Options
 if echo "$HEADER" | grep -qiF --regexp=X-Content-Type-Options; then
-        echo -e "[+] X-Content-Type-Options:    ${GREEN}Header Present${RESET}"
+        echo -e "[+] X-Content-Type-Options:                      ${GREEN}Header Present${RESET}"
 else
-        echo -e "[+] X-Content-Type-Options:    ${RED}Header Not Present${RESET}"
+        echo -e "[+] X-Content-Type-Options:                      ${RED}Header Not Present${RESET}"
 fi
 
 #X-Frame-Options
 if echo "$HEADER" | grep -qiF --regexp=X-Frame-Options; then
-        echo -e "[+] X-Frame-Options:           ${GREEN}Header Present${RESET}"
+        echo -e "[+] X-Frame-Options:                             ${GREEN}Header Present${RESET}"
 else
-        echo -e "[+] X-Frame-Options:           ${RED}Header Not Present${RESET}"
+        echo -e "[+] X-Frame-Options:                             ${RED}Header Not Present${RESET}"
 fi
 
 #X-XSS-Protection
 if echo "$HEADER" | grep -qiF --regexp=X-XSS-Protection; then
-        echo -e "[+] X-XSS-Protection:          ${GREEN}Header Present${RESET}"
+        echo -e "[+] X-XSS-Protection:                            ${GREEN}Header Present${RESET}"
 else
-        echo -e "[+] X-XSS-Protection:          ${RED}Header Not Present${RESET}"
+        echo -e "[+] X-XSS-Protection:                            ${RED}Header Not Present${RESET}"
 fi
 
 #Content-Security-Policy
 if echo "$HEADER" | grep -qiF --regexp=Content-Security-Policy; then
-        echo -e "[+] Content-Security-Policy:   ${GREEN}Header Present${RESET}"
+        echo -e "[+] Content-Security-Policy:                     ${GREEN}Header Present${RESET}"
 else
-        echo -e "[+] Content-Security-Policy:   ${RED}Header Not Present${RESET}"
+        echo -e "[+] Content-Security-Policy:                     ${RED}Header Not Present${RESET}"
 fi
 
 #Referrer Policy
 if echo "$HEADER" | grep -qiF --regexp=Referrer-Policy; then
-        echo -e "[+] Referrer-Policy:           ${GREEN}Header Present${RESET}"
+        echo -e "[+] Referrer-Policy:                             ${GREEN}Header Present${RESET}"
 else
-        echo -e "[+] Referrer-Policy:           ${RED}Header Not Present${RESET}"
+        echo -e "[+] Referrer-Policy:                             ${RED}Header Not Present${RESET}"
+fi
+
+#Feature-Policy
+if echo "$HEADER" | grep -qiF --regexp=Referrer-Policy; then
+        echo -e "[+] Feature-Policy:                              ${GREEN}Header Present${RESET}"
+else
+        echo -e "[+] Feature-Policy:                              ${RED}Header Not Present${RESET}"
+fi
+
+#X-Permitted-Cross-Domain-Policies Policy
+if echo "$HEADER" | grep -qiF --regexp=Referrer-Policy; then
+        echo -e "[+] X-Permitted-Cross-Domain-Policies:           ${GREEN}Header Present${RESET}"
+else
+        echo -e "[+] X-Permitted-Cross-Domain-Policies:           ${RED}Header Not Present${RESET}"
 fi
 
 echo
