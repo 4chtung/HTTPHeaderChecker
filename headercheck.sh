@@ -2,6 +2,7 @@
 
 #HTTP HEADER CHECKER
 #Written By 4chtung
+#This is mostly for making reports look nice and is therefore janky as hell.
 
 # HOLY CRAP COLOUR!
 ESC="\e["
@@ -25,7 +26,7 @@ echo "| | ||_ _||_ _|| . \ | | | ___  ___  _| | ___  _ _  |_ _|___  ___ | |"
 echo "|   | | |  | | |  _/ |   |/ ._><_> |/ . |/ ._>| '_>  | |/ . \/ . \| |"
 echo "|_|_| |_|  |_| |_|   |_|_|\___.<___|\___|\___.|_|    |_|\___/\___/|_|"
 echo "                                                                     "
-echo "HTTP Header Scanning Tool --- 4chtung - (@4chtung)"
+echo "HTTP Header Scanning Tool --- 4chtung --- (@4chtung)"
 echo "V1.2 - Added Redirect Support"
 echo "V1.1 - Added Support For Text File Analysis"
 echo
@@ -106,9 +107,9 @@ fi
 
 #X-XSS-Protection
 if echo "$HEADER" | grep -qiF --regexp=X-XSS-Protection; then
-        echo -e "[+] X-XSS-Protection:                            ${GREEN}Header Present${RESET}"
+        echo -e "[+] X-XSS-Protection ${BLUE}(LEGACY)${RESET}:                   ${GREEN}Header Present${RESET}"
 else
-        echo -e "[+] X-XSS-Protection:                            ${RED}Header Not Present${RESET}"
+        echo -e "[+] X-XSS-Protection ${BLUE}(LEGACY)${RESET}:                   ${RED}Header Not Present${RESET}"
 fi
 
 #Content-Security-Policy
